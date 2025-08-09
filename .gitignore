@@ -1,0 +1,34 @@
+# Node
+node_modules/
+**/node_modules/
+
+# Build outputs
+/dist/
+/build/
+/.cache/
+/.next/
+/out/
+coverage/
+
+# Env files
+.env
+*.env
+**/.env
+**/*.env
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Vite
+client/.vite/
+
+# Local env examples allowed
+!server/.env.example
+!client/.env.example
