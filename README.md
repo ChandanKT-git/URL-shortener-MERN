@@ -3,6 +3,11 @@
 A full‑stack URL shortener built with MongoDB, Express, React (Vite), and Node.js.
 Includes a polished Admin page with safe, robust UI: sortable columns, tooltips, copy buttons, responsive table, and dark mode.
 
+## Live
+- **Client (Netlify):** https://shortieurl.netlify.app/
+- **API (Render):** https://url-shortener-mern-374r.onrender.com/
+- **Admin Page:** navigate to `/admin` on the client → https://shortieurl.netlify.app/admin
+
 ## Features
 - Shorten long URLs to shareable links
 - Redirects with click counting
