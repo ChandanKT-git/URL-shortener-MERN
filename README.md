@@ -83,9 +83,43 @@ npm run dev
 - If you change the server port, update `BASE_URL` accordingly.
 
 ## Deployment
-- Server: deploy to any Node host (Render, Railway, Heroku alternatives, VPS, etc.)
-- Client: static hosting (Netlify, Vercel) with `VITE_API_BASE` if you externalize API base.
-- Set environment variables on the hosting provider; never commit secrets.
+
+### Server (Render or Railway)
+1. Push the repo to GitHub (already done).
+2. Create a new Web Service:
+   - Runtime: Node 18+
+   - Build command: `npm install`
+   - Start command: `node src/index.js` (or `npm start` if you add a script)
+3. Environment variables:
+   - `PORT` → 5000 (Render sets its own; just use `process.env.PORT` in code)
+   - `MONGO_URI` → your Atlas SRV
+   - `BASE_URL` → your public server URL (e.g., `https://your-service.onrender.com`)
+4. After deploy, verify API: `GET /api/admin/urls` should return JSON.
+
+### Client (Netlify or Vercel)
+1. Build locally first if needed: `cd client && npm install && npm run build`.
+2. Netlify:
+   - Deploy site → Import from Git → pick `client/`
+   - Build command: `npm run build`
+   - Publish directory: `client/dist`
+   - Environment (optional): if your API base differs from same-origin, set `VITE_API_BASE` to your server URL and use it in `client/src/api.js`.
+3. Vercel:
+   - New Project → Import Git → Framework: Vite
+   - Build: `npm run build`
+   - Output: `client/dist`
+   - Set `VITE_API_BASE` if using a different origin.
+
+Notes:
+- If the client and server are on different domains, ensure CORS is enabled on the server (`cors()` is already used in `server/src/index.js`).
+- Update `BASE_URL` on the server to match the deployed server address so generated short links are correct.
+
+## Screenshots
+Add images or GIFs to showcase the Admin page and the shortening flow.
+
+Suggested placeholders (put files under `docs/` and reference here):
+- `docs/admin-light.png`
+- `docs/admin-dark.png`
+- `docs/shorten-flow.gif`
 
 ## License
 MIT
