@@ -114,12 +114,11 @@ Notes:
 - Update `BASE_URL` on the server to match the deployed server address so generated short links are correct.
 
 ## Screenshots
-Add images or GIFs to showcase the Admin page and the shortening flow.
+Below are screenshots from the `docs/` folder:
 
-Suggested placeholders (put files under `docs/` and reference here):
-- `docs/admin-light.png`
-- `docs/admin-dark.png`
-- `docs/shorten-flow.gif`
+![Admin View 1](docs/Screenshot%202025-08-09%20221124.png)
+![Admin View 2](docs/Screenshot%202025-08-09%20221157.png)
+![Admin View 3](docs/Screenshot%202025-08-09%20221234.png)
 
 ## License
 MIT
