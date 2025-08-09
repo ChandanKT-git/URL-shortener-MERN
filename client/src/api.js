@@ -1,5 +1,7 @@
+const API_BASE = import.meta.env.VITE_API_BASE || '';
+
 export async function shortenUrl(longUrl) {
-  const res = await fetch('/api/shorten', {
+  const res = await fetch(`${API_BASE}/api/shorten`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ longUrl }),

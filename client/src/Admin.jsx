@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+const API_BASE = import.meta.env.VITE_API_BASE || '';
 
 export default function Admin() {
   const [items, setItems] = useState([]);
@@ -50,10 +51,17 @@ export default function Admin() {
     try { return new Date(t).toLocaleString(); } catch { return '-'; }
   };
 
+  // Optimistically bump clicks in UI when a short link is clicked
+  const bumpClicks = (shortcode) => {
+    setItems((prev) => prev.map((it) =>
+      it.shortcode === shortcode ? { ...it, clicks: (it.clicks || 0) + 1 } : it
+    ));
+  };
+
   useEffect(() => {
     (async () => {
       try {
-        const res = await fetch('/api/admin/urls');
+        const res = await fetch(`${API_BASE}/api/admin/urls`);
         if (!res.ok) throw new Error('Failed to fetch URLs');
         const data = await res.json();
         setItems(data);
@@ -170,7 +178,14 @@ export default function Admin() {
               <tr key={i._id || i.id || i.shortUrl}>
                 <td>
                   <div className="cell-inline">
-                    <a href={i.shortUrl} target="_blank" rel="noreferrer" title={i.shortUrl}>
+                    <a
+                      href={i.shortUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      title={i.shortUrl}
+                      onClick={() => bumpClicks(i.shortcode)}
+                      onAuxClick={() => bumpClicks(i.shortcode)}
+                    >
                       {i.shortUrl}
                     </a>
                     <button
