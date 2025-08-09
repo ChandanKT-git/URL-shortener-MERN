@@ -1,4 +1,4 @@
-const API_BASE = import.meta.env.VITE_API_BASE || '';
+const API_BASE = (import.meta.env.VITE_API_BASE || '').replace(/\/+$/, '');
 
 export async function shortenUrl(longUrl) {
   const res = await fetch(`${API_BASE}/api/shorten`, {
